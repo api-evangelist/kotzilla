@@ -1,0 +1,108 @@
+generated: '2026-08-17'
+method: searched
+source: https://doc.kotzilla.io/docs/releaseNotes/versionUpgrades
+note: >-
+  Kotzilla's lifecycle posture is SDK-shaped, not API-shaped: version policy,
+  deprecation and support windows are all expressed as Maven artifact versions
+  and Kotlin/AGP compatibility ranges, because there is no versioned HTTP API.
+  NO STATUS PAGE EXISTS — see status_page below, which records a false positive
+  that was checked and rejected.
+
+versioning:
+  scheme: semver
+  current: 2.3.3
+  current_date: '2026-08-03'
+  docs: https://doc.kotzilla.io/docs/releaseNotes/versionUpgrades
+  quote: >-
+    "2.3.0 is a drop-in upgrade from 2.2.x. Bump the version, rebuild, and
+    everything keeps working."
+  breaking_change_policy: >-
+    Breaking changes are flagged on major/minor bumps; the version-upgrades
+    guide exists "to help you migrate between major SDK updates that might
+    require to go over some breaking changes".
+  api_versioning: null
+  api_versioning_note: No HTTP API is published, so there is no URI/header/date API version scheme.
+
+deprecation:
+  policy_url: https://doc.kotzilla.io/docs/releaseNotes/versionUpgrades
+  published: true
+  model: gradual-deprecation
+  quote: >-
+    Deprecated APIs are marked but remain functional across a minor bump — for
+    the 2.1.x to 2.2.x transition, "They still work; migrate to generated
+    monitoring()".
+  caveat: >-
+    "If you build with allWarningsAsErrors, these deprecations become hard
+    errors." — the soft deprecation becomes a hard build failure for strict
+    projects.
+  sunset_header: false
+  sunset_header_note: RFC 8594 Sunset/Deprecation headers are not applicable; there is no HTTP API surface.
+  explicit_eol_dates: false
+  explicit_eol_note: >-
+    The docs express support as tested compatibility ranges (SDK 2.3.0 supports
+    "Kotlin 2.2.0 - 2.4.x", "2.5+ accepted with a warning") rather than
+    calendar end-of-life dates for SDK versions.
+
+support_windows:
+  - artifact: Koin 3.5 LTS
+    url: https://kotzilla.io/koin-lts
+    commitment: >-
+      "Kotzilla guarantees a stable Koin framework based on Kotlin 1.x language
+      until at least June 2026"
+    commercial: true
+    status: >-
+      NOTE: as of this profile's date (2026-08-17) the published "until at
+      least June 2026" commitment has now elapsed and has not been visibly
+      extended on the LTS page.
+    benefits:
+      - Guaranteed feature compatibility with the Android and Kotlin ecosystems
+      - Priority access to the Koin Expert team via Slack and dedicated email
+      - Audited Apache-2.0 license accountability
+      - Full codebase access and rapid integration of community fixes
+
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: >-
+    No public SLA document. The pricing page offers "Premium Support with SLA"
+    on the Enterprise tier only, with no uptime figure disclosed — the SLA is
+    sales-gated.
+
+status_page: null
+status_page_published: false
+status_page_checked:
+  - url: https://status.kotzilla.io/
+    result: does-not-resolve
+  - url: https://kotzilla.statuspage.io/
+    http_status: 200
+    result: false-positive
+    note: >-
+      REJECTED. Returns 200 but redirects to
+      https://www.atlassian.com/software/statuspage — the Atlassian Statuspage
+      marketing site, not a Kotzilla status page. No StatusPage pointer is
+      emitted for this provider.
+
+license:
+  platform_sdk:
+    name: Kotzilla Platform License 1.0
+    url: https://doc.kotzilla.io/docs/discover/license
+    open_source: false
+    terms: >-
+      Perpetual, personal, non-exclusive license granted free of charge;
+      sublicensing, assignment and sharing prohibited without written consent;
+      no performing services for third parties with the software; the company
+      reserves the right to charge fees for newly released features.
+  koin:
+    name: Apache-2.0
+    open_source: true
+    url: https://github.com/InsertKoinIO/koin
+
+deprecated_operations: []
+deprecated_operations_note: No OpenAPI exists, so no deprecated operations can be derived.
+
+summary:
+  versioning_published: true
+  deprecation_policy_published: true
+  status_page_published: false
+  sla_published: false

@@ -1,0 +1,100 @@
+generated: '2026-08-17'
+method: searched
+source: https://kotzilla.io/pricing
+docs:
+  - https://kotzilla.io/pricing
+  - https://doc.kotzilla.io/docs/discover/license
+  - https://kotzilla.io/koin-lts
+note: >-
+  Two published tiers. Kotzilla publishes a real free tier with a stated event
+  quota, and an Enterprise tier gated behind "Custom Pricing" with no public
+  number. No machine-readable pricing/catalog endpoint exists, so this is read
+  from the human pricing page.
+currency_note: >-
+  No currency is stated for the paid tier because no paid price is published.
+  The student/teacher offer is the only figure carrying a currency symbol
+  ("Free 0€"), which places list pricing in EUR — Kotzilla SAS is a French
+  company.
+
+plans:
+  - name: Starter
+    price: 0
+    price_display: Free
+    currency: EUR
+    billing_period: null
+    billing_period_note: No billing period stated; described as free with unlimited-time usage.
+    quota:
+      events: 500000
+      events_display: 500k events
+      sessions_approx: 250
+      sessions_display: ~250 sessions
+      applications: unlimited
+      applications_display: Unlimited applications monitored
+      users: 1
+    limits:
+      data_retention_days: 15
+      data_region: USA
+      support: Community Support
+    included:
+      - Issues Detection (Slow Startups, ANR, Crashes, Slow Rendering)
+      - Interactive Session Timeline
+      - Root Cause Analysis
+    overage: not_published
+    overage_note: >-
+      The pricing page states no overage rate and no behaviour on quota
+      exhaustion. The FAQ describes the free plan as "unlimited time usage of
+      Kotzilla Platform with a limited quota of events", which implies the
+      quota caps ingestion rather than billing, but the docs do not say what
+      happens when it is reached.
+
+  - name: Enterprise
+    price: null
+    price_display: Custom Pricing
+    currency: null
+    billing_period: null
+    quota:
+      sessions: unlimited
+      applications: unlimited
+      users: unlimited
+    limits:
+      data_retention_days_min: 30
+      data_retention_days_max: 120
+      data_retention_display: 30-120 days storage
+      data_region: USA/Europe
+      support: Premium Support with SLA
+      support_extras: Dedicated Support Channels
+    included:
+      - AI-Powered Remediation
+      - Production Monitoring
+      - Enterprise data and security features
+      - All detection capabilities
+    overage: not_published
+    contact: https://kotzilla.io/contact-us
+    demo: https://calendly.com/d/cmd7-xws-vd9/demo-cloud-inject-platform
+
+discounts:
+  - name: Student/Teacher Discount
+    price_display: Free 0€
+    description: >-
+      "Get extra free data for the whole time you're a student or teacher" —
+      additional free data allowance on top of the Starter tier.
+
+adjacent_offerings:
+  - name: Koin LTS
+    url: https://kotzilla.io/koin-lts
+    price: not_published
+    description: >-
+      Paid subscription for professional support and maintenance of Koin 3.5
+      for enterprises, guaranteed on Kotlin 1.x "until at least June 2026".
+      Sold separately from the Kotzilla Platform; no price published.
+
+summary:
+  plan_count: 2
+  free_tier: true
+  public_paid_price: false
+  sales_gate: true
+  sales_gate_note: >-
+    Every tier above the free Starter plan is priced by contact only, so the
+    real cost of production use is not publicly discoverable. Notably the free
+    tier's data region is fixed to the USA — EU data residency is an Enterprise
+    (i.e. sales-gated) feature for a French vendor.

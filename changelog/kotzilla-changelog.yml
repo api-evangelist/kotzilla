@@ -1,0 +1,92 @@
+generated: '2026-08-17'
+method: searched
+source: https://doc.kotzilla.io/docs/releaseNotes/changelogSDK
+docs:
+  changelog: https://doc.kotzilla.io/docs/releaseNotes/changelogSDK
+  whats_new: https://doc.kotzilla.io/docs/releaseNotes/whatsNew
+  version_upgrades: https://doc.kotzilla.io/docs/releaseNotes/versionUpgrades
+  overview: https://doc.kotzilla.io/docs/releaseNotes/overview
+note: >-
+  Kotzilla maintains a dated SDK changelog in its documentation. It covers the
+  Kotzilla SDK and Gradle plugin only — there is no separate changelog for the
+  Console, the MCP server or the Koin IDE plugin, so agent-facing changes to
+  the MCP tool surface are NOT covered by any published change record. Recent
+  window captured; the live page is the source of truth.
+scheme: semver
+scheme_note: >-
+  major.minor.patch with documented drop-in vs breaking semantics — "2.3.0 is a
+  drop-in upgrade from 2.2.x. Bump the version, rebuild, and everything keeps
+  working."
+current_version: 2.3.3
+current_version_date: '2026-08-03'
+current_version_source: >-
+  https://repo1.maven.org/maven2/io/kotzilla/kotzilla-sdk/maven-metadata.xml
+  (<release>2.3.3</release>, lastUpdated 20260803141314) — matches the changelog.
+cadence_note: >-
+  Six dated releases between 2026-06-18 and 2026-08-03 — roughly fortnightly.
+  This is an actively maintained SDK.
+
+entries:
+  - version: 2.3.3
+    date: '2026-08-03'
+    breaking: false
+    highlights:
+      - 'Fixed: KMP iOS builds with Compose could fail to link with a capability conflict'
+      - 'Fixed: iOS early-start could export the wrong SDK module in Compose KMP apps'
+  - version: 2.3.2
+    date: '2026-08-03'
+    breaking: false
+    highlights:
+      - 'Fixed: Android manifest-merger conflict on backup rules (2.3.0 regression)'
+      - "Fixed: Kotzilla's stored state stays excluded from Android backup"
+      - 'Fixed: Root-level plugin apply could break multi-module KMP builds'
+      - 'Fixed: Compose route with an early return could crash R8/D8 dexing'
+      - 'Fixed: Koin logger self-reference could crash the host app on startup'
+  - version: 2.3.1
+    date: '2026-07-22'
+    breaking: false
+    highlights:
+      - Build report now covers all app versions rather than current build only
+      - Resolved Gradle task conflicts with source-generating build processes
+      - Plugin configuration no longer aborts when Kotlin source sets are absent
+  - version: 2.3.0
+    date: '2026-07-07'
+    breaking: false
+    additions:
+      - Universal consent gates
+      - Automatic SDK startup before app initialization
+      - Startup tracing metrics
+      - Expanded ecosystem compatibility (Kotlin 2.4.x, AGP 9.2.1)
+    highlights:
+      - 'Drop-in upgrade from 2.2.x'
+  - version: 2.2.4
+    date: '2026-06-22'
+    breaking: false
+    highlights:
+      - Build reports no longer fail builds by default; CI/CD overrides available via Gradle properties
+  - version: 2.2.3
+    date: '2026-06-18'
+    breaking: false
+    highlights:
+      - Corrected timeline ordering of Koin events relative to screen lifecycle events
+
+related_release_streams:
+  - name: Koin (open source, Kotzilla-maintained)
+    current_version: 4.2.2
+    date: '2026-06-15'
+    source: https://repo1.maven.org/maven2/io/insert-koin/koin-core/maven-metadata.xml
+    changelog: https://github.com/InsertKoinIO/koin/releases
+  - name: Koin IDE plugin (JetBrains Marketplace)
+    current_version: 1.6.0
+    date: '2026-08-03'
+    source: https://plugins.jetbrains.com/plugin/26131
+  - name: Kotzilla MCP Server
+    current_version: null
+    note: >-
+      No version and no changelog published for the MCP server. Its 15 tools
+      can change without any dated record an agent operator could track.
+
+summary:
+  entry_count: 6
+  window: 2026-06-18..2026-08-03
+  breaking_changes_in_window: 0

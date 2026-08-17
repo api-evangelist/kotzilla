@@ -1,0 +1,141 @@
+generated: '2026-08-17'
+method: probed
+source: live GET of /.well-known/* on every Kotzilla host
+note: >-
+  REAL HITS EXIST, and they are all on mcp.kotzilla.io: the MCP server publishes
+  RFC 8414 authorization-server metadata and RFC 9728 protected-resource
+  metadata as genuine JSON documents. Those two justify the WellKnown pointer.
+  EVERYTHING ELSE IS A FALSE POSITIVE AND IS RECORDED AS A MISS. Both
+  doc.kotzilla.io (Docusaurus) and console.kotzilla.io (SPA behind nginx) answer
+  HTTP 200 with `text/html` for EVERY /.well-known/* path probed, including
+  paths that cannot exist — they are catch-all shells, not documents. They are
+  listed below with `soft_200_html: true` and `document: false` so no later pass
+  mistakes them for served surfaces. No security.txt is served anywhere on
+  kotzilla.io, so NO SecurityTxt pointer is emitted.
+hosts_probed:
+  - kotzilla.io
+  - www.kotzilla.io
+  - doc.kotzilla.io
+  - console.kotzilla.io
+  - mcp.kotzilla.io
+  - repository.kotzilla.io
+  - blog.kotzilla.io
+  - insert-koin.io
+  - api.kotzilla.io
+documents:
+  # --- REAL DOCUMENTS ---
+  - host: https://mcp.kotzilla.io
+    path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    document: true
+    spec: RFC 8414
+    file: kotzilla-oauth-authorization-server.json
+    note: >-
+      OAuth 2.0 authorization-server metadata for the Kotzilla MCP server.
+      Advertises authorization_code + refresh_token grants, PKCE S256,
+      dynamic client registration (RFC 7591) at /oauth/register, token
+      revocation (RFC 7009), and scopes openid / email / offline_access.
+  - host: https://mcp.kotzilla.io
+    path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    document: true
+    spec: RFC 9728
+    file: kotzilla-oauth-protected-resource.json
+    note: >-
+      Names the resource "Kotzilla MCP Server", points at itself as the
+      authorization server, and declares bearer-header auth with scopes
+      openid / email.
+
+  # --- MISSES (recorded absences) ---
+  - host: https://kotzilla.io
+    path: /.well-known/security.txt
+    status: 404
+    document: false
+  - host: https://kotzilla.io
+    path: /.well-known/openid-configuration
+    status: 404
+    document: false
+  - host: https://kotzilla.io
+    path: /.well-known/oauth-authorization-server
+    status: 404
+    document: false
+  - host: https://kotzilla.io
+    path: /.well-known/api-catalog
+    status: 404
+    document: false
+  - host: https://kotzilla.io
+    path: /.well-known/ai-plugin.json
+    status: 404
+    document: false
+  - host: https://mcp.kotzilla.io
+    path: /.well-known/openid-configuration
+    status: 404
+    document: false
+  - host: https://mcp.kotzilla.io
+    path: /.well-known/security.txt
+    status: 404
+    document: false
+  - host: https://mcp.kotzilla.io
+    path: /.well-known/api-catalog
+    status: 404
+    document: false
+
+  # --- SOFT-200 HTML SHELLS: NOT documents ---
+  - host: https://doc.kotzilla.io
+    path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+    note: Docusaurus catch-all; returns the docs HTML shell for any path.
+  - host: https://doc.kotzilla.io
+    path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+  - host: https://doc.kotzilla.io
+    path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+  - host: https://doc.kotzilla.io
+    path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+  - host: https://console.kotzilla.io
+    path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+    note: SPA catch-all; /openapi.json on the same host also returns the app shell.
+  - host: https://console.kotzilla.io
+    path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+  - host: https://console.kotzilla.io
+    path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+  - host: https://console.kotzilla.io
+    path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    document: false
+    soft_200_html: true
+summary:
+  real_documents: 2
+  soft_200_html: 8
+  misses: 8
+  security_txt: false
+  api_catalog: false

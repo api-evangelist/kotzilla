@@ -1,0 +1,69 @@
+generated: '2026-08-17'
+method: probed
+source: https://mcp.kotzilla.io/.well-known/oauth-authorization-server
+note: >-
+  Scopes were read live from the provider's own RFC 8414 authorization-server
+  metadata and RFC 9728 protected-resource metadata, not derived from an
+  OpenAPI (Kotzilla publishes none). Kotzilla does NOT publish a scopes /
+  permissions reference page in its documentation; the metadata documents are
+  the only published scope surface, so descriptions below state the standard
+  meaning of each scope rather than a provider-authored one, and are marked
+  accordingly.
+
+schemes:
+  - name: KotzillaMCPOAuth
+    source: well-known/kotzilla-oauth-authorization-server.json
+    resource: https://mcp.kotzilla.io
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://mcp.kotzilla.io/oauth/authorize
+        tokenUrl: https://mcp.kotzilla.io/oauth/token
+
+scopes:
+  - scope: openid
+    description: >-
+      Standard OpenID Connect scope requesting the subject identifier of the
+      authenticated Kotzilla account. Description is the standard meaning;
+      Kotzilla publishes no scope reference page.
+    description_source: standard
+    flows: [authorizationCode]
+    advertised_by: [authorization-server-metadata, protected-resource-metadata]
+    sources: [well-known/kotzilla-oauth-authorization-server.json]
+  - scope: email
+    description: >-
+      Standard OpenID Connect scope requesting the email address of the
+      authenticated Kotzilla account. Description is the standard meaning;
+      Kotzilla publishes no scope reference page.
+    description_source: standard
+    flows: [authorizationCode]
+    advertised_by: [authorization-server-metadata, protected-resource-metadata]
+    sources: [well-known/kotzilla-oauth-authorization-server.json]
+  - scope: offline_access
+    description: >-
+      Standard OAuth/OIDC scope requesting a refresh token so an agent session
+      survives access-token expiry. Description is the standard meaning;
+      Kotzilla publishes no scope reference page.
+    description_source: standard
+    flows: [authorizationCode]
+    advertised_by: [authorization-server-metadata]
+    sources: [well-known/kotzilla-oauth-authorization-server.json]
+
+observations:
+  - >-
+    The scope set is IDENTITY-ONLY. None of the fifteen MCP tools —
+    including the three that mutate state (create_app,
+    set_app_versions_enabled, koin_apply_fix) — is gated by a distinct scope.
+    Authorization is therefore all-or-nothing at the account level: any token
+    that can read issues can also register apps, toggle data ingestion, and
+    apply Koin fixes to source. There is no least-privilege token available to
+    an agent operator.
+  - >-
+    The protected-resource metadata advertises only [openid, email] while the
+    authorization-server metadata advertises [openid, email, offline_access] —
+    a minor inconsistency between the two documents.
+
+summary:
+  scope_count: 3
+  resource_scopes: 0
+  identity_scopes: 3
+  granular_authorization: false

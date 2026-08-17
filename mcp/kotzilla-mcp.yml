@@ -1,0 +1,135 @@
+generated: '2026-08-17'
+method: searched
+status: published
+source: https://doc.kotzilla.io/docs/getstartedCustom/mcpSetup
+docs:
+  - https://doc.kotzilla.io/docs/discover/mcpServer
+  - https://doc.kotzilla.io/docs/getstartedCustom/mcpSetup
+note: >-
+  The Kotzilla MCP Server is this provider's ONLY machine-readable API surface.
+  Kotzilla publishes no REST OpenAPI and no GraphQL endpoint — there is no
+  api.kotzilla.io (NXDOMAIN), and /openapi.json, /swagger.json, /v3/api-docs and
+  /graphql on both console.kotzilla.io and doc.kotzilla.io return HTML app
+  shells, not specs. The "SDK features & API" docs section documents a Kotlin
+  SDK API (KotzillaSDK.log/trace/setUserId/...), not an HTTP API. So for
+  Kotzilla, MCP is the API.
+
+deployment:
+  mode: remote
+  endpoint: https://mcp.kotzilla.io/mcp
+  auth: oauth
+  verified: probed
+  note: >-
+    REMOTE, not a package. Kotzilla's setup docs show `npx -y mcp-remote
+    https://mcp.kotzilla.io/mcp`, but mcp-remote is the third-party stdio<->HTTP
+    bridge for clients that cannot speak remote MCP — it is NOT a Kotzilla
+    package and Kotzilla ships no npm/PyPI MCP package of its own. The product
+    an agent actually calls is the hosted HTTPS endpoint, so mode is `remote`.
+
+server:
+  name: kotzilla
+  transport: http
+  url: https://mcp.kotzilla.io/mcp
+  resource_name: Kotzilla MCP Server
+  clients_documented: [Claude Code, Cursor, Windsurf, Android Studio]
+
+authentication:
+  type: oauth2
+  flow: authorization_code
+  pkce: S256
+  dynamic_client_registration: true
+  authorization_endpoint: https://mcp.kotzilla.io/oauth/authorize
+  token_endpoint: https://mcp.kotzilla.io/oauth/token
+  registration_endpoint: https://mcp.kotzilla.io/oauth/register
+  revocation_endpoint: https://mcp.kotzilla.io/oauth/revoke
+  scopes: [openid, email, offline_access]
+  metadata:
+    - well-known/kotzilla-oauth-authorization-server.json
+    - well-known/kotzilla-oauth-protected-resource.json
+  docs_quote: >-
+    "On first use, the MCP Server asks you to authenticate with your Kotzilla
+    account. If you do not have an account yet, you can create one for free at
+    console.kotzilla.io."
+
+client_config:
+  source: https://doc.kotzilla.io/docs/getstartedCustom/mcpSetup
+  verbatim: |
+    {
+      "mcpServers": {
+        "kotzilla": {
+          "command": "npx",
+          "args": ["-y", "mcp-remote", "https://mcp.kotzilla.io/mcp"]
+        }
+      }
+    }
+
+introspection:
+  attempted: '2026-08-17'
+  method: POST tools/list
+  endpoint: https://mcp.kotzilla.io/mcp
+  http_status: 401
+  response: '{"error":"invalid_token","error_description":"The access token is missing or invalid"}'
+  result: gated
+  note: >-
+    The live tool schemas are OAuth-gated. The tool list below is transcribed
+    from Kotzilla's own published MCP documentation (names + purpose only).
+    inputSchema for each tool requires an authenticated tools/list call and is
+    therefore NOT recorded here rather than guessed.
+
+tools:
+  - name: list_apps
+    description: List your registered apps
+    category: apps
+  - name: create_app
+    description: Register a new app
+    category: apps
+  - name: guide_sdk_installation
+    description: Get SDK setup instructions
+    category: onboarding
+  - name: generate_app_config
+    description: Generate kotzilla.json
+    category: onboarding
+  - name: get_platform_activity
+    description: See which apps are active
+    category: telemetry
+  - name: get_screen_performance
+    description: Screen rendering times and ANR counts
+    category: telemetry
+  - name: get_issues
+    description: Performance and architecture issues
+    category: issues
+  - name: get_issue_context
+    description: Deep dive analysis with dependency trees
+    category: issues
+  - name: get_fix_guidance
+    description: Fix patterns for issue types
+    category: issues
+  - name: generate_report
+    description: Performance summary
+    category: reporting
+  - name: list_app_versions
+    description: List versions and ingestion status
+    category: versions
+  - name: set_app_versions_enabled
+    description: Control data collection per version
+    category: versions
+  - name: koin_diagnose
+    description: Diagnose Koin configuration issues
+    category: koin
+  - name: koin_search_graph
+    description: Search Koin dependency graph
+    category: koin
+  - name: koin_apply_fix
+    description: Apply Koin configuration fixes
+    category: koin
+
+summary:
+  tool_count: 15
+  tools_with_input_schema: 0
+  input_schemas_gated: true
+  write_tools: [create_app, set_app_versions_enabled, koin_apply_fix]
+  note: >-
+    Three of the fifteen tools mutate state (register an app, toggle per-version
+    data ingestion, apply a Koin configuration fix to source). koin_apply_fix in
+    particular writes to the developer's codebase, which is the highest-
+    consequence operation in this tool set.

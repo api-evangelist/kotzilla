@@ -1,0 +1,74 @@
+generated: '2026-08-17'
+method: searched
+source: https://kotzilla.io/pricing
+docs:
+  - https://kotzilla.io/pricing
+  - https://doc.kotzilla.io/docs/discover/faq
+  - https://doc.kotzilla.io/docs/discover/mcpServer
+note: >-
+  Kotzilla publishes NO HTTP rate limits. What it publishes is a plan-level
+  ingestion QUOTA, which is a different control: a cap on total telemetry
+  volume per account, not a requests-per-window throttle. Both are recorded
+  below and kept distinct. No RateLimit-* / X-RateLimit-* headers, no
+  Retry-After behaviour and no 429 semantics are documented anywhere in the
+  Kotzilla documentation, and none could be observed because the only HTTP
+  surface (the MCP server at https://mcp.kotzilla.io/mcp) rejects
+  unauthenticated calls with 401 before any limit would apply.
+
+limits: []
+
+quotas:
+  - scope: per-account
+    plan: Starter
+    window: null
+    window_note: >-
+      No window is published. The FAQ describes the free plan as "unlimited
+      time usage ... with a limited quota of events", which reads as a lifetime
+      or rolling allowance rather than a periodic reset, but Kotzilla does not
+      state which.
+    limit: 500000
+    unit: events
+    equivalent: ~250 sessions
+    source: https://kotzilla.io/pricing
+  - scope: per-account
+    plan: Starter
+    limit: 1
+    unit: users
+    source: https://kotzilla.io/pricing
+  - scope: per-account
+    plan: Enterprise
+    limit: unlimited
+    unit: sessions
+    source: https://kotzilla.io/pricing
+
+retention:
+  - {plan: Starter, days: 15, region: USA}
+  - {plan: Enterprise, days_min: 30, days_max: 120, region: USA/Europe}
+
+response_signalling:
+  documented: false
+  headers: []
+  exhaustion_status_code: null
+  retry_after: false
+  note: >-
+    Not documented. An agent calling the Kotzilla MCP server has no published
+    runtime signal telling it that the account quota is exhausted or that it
+    should back off — the only documented control is the per-version ingestion
+    toggle exposed as the `set_app_versions_enabled` MCP tool, which is a
+    manual switch rather than a limit signal.
+
+observed:
+  - url: https://mcp.kotzilla.io/mcp
+    method: POST
+    http_status: 401
+    rate_limit_headers: none
+    checked: '2026-08-17'
+    note: Unauthenticated tools/list; no rate-limit headers present on the response.
+
+summary:
+  limit_count: 0
+  quota_count: 3
+  headers_published: false
+  reason: >-
+    limit_count is an honest zero: Kotzilla documents plan quotas, not request
+    rate limits, and publishes no rate-limit response headers or 429 contract.

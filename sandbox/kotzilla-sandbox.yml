@@ -1,0 +1,107 @@
+generated: '2026-08-17'
+method: searched
+source: https://doc.kotzilla.io/docs/getstartedNIA/setup
+docs:
+  - https://doc.kotzilla.io/docs/getstartedNIA/overview
+  - https://doc.kotzilla.io/docs/getstartedNIA/setup
+  - https://doc.kotzilla.io/docs/getstartedNIA/validationIssues
+note: >-
+  Kotzilla's "sandbox" is a try-before-you-instrument path built on a forked
+  open-source sample app, NOT a test-vs-live key separation. There are no test
+  API keys, no test/live modes and no magic test identifiers — an evaluator
+  registers a real (free) app in the real Console and points a sample Android
+  application at it. Every value below is published by Kotzilla verbatim; none
+  is invented.
+
+model:
+  test_live_separation: false
+  test_key_prefix: null
+  live_key_prefix: null
+  note: >-
+    Kotzilla issues one API key per registered application via kotzilla.json.
+    The docs describe no separate test-mode credential, so evaluation data and
+    production data are separated by APPLICATION, not by key mode. The
+    per-version ingestion switch (`set_app_versions_enabled` MCP tool /
+    https://doc.kotzilla.io/docs/settings/... version controls) is the closest
+    thing to an environment gate.
+
+console:
+  url: https://console.kotzilla.io/
+  sandbox_home: https://console.kotzilla.io/sandbox-home
+  signup: https://console.kotzilla.io/signup
+  free_account_required: true
+  note: >-
+    console.kotzilla.io/sandbox-home returns 200 and is linked from the
+    kotzilla.io homepage as the sandbox entry point. The page itself is behind
+    the console SPA; contents were not enumerated anonymously.
+
+demo_app:
+  name: NowInAndroid
+  upstream: https://github.com/android/nowinandroid
+  kotzilla_fork: https://github.com/kotzilla-io/nowinandroid
+  kotzilla_fork_annotations: https://github.com/kotzilla-io/nowinandroid_koin_annotations
+  license: Apache-2.0
+  registration_values_published:
+    application_name: NowInAndroid-gettingStarted
+    android_package_name: com.google.samples.apps.nowinandroid.demo.debug
+  note: >-
+    These are the exact values Kotzilla's getting-started guide tells an
+    evaluator to enter when registering the demo app in the Console. They are
+    the only published fixture values in Kotzilla's documentation.
+
+setup_paths:
+  - name: MCP-driven setup
+    description: >-
+      Prompt an AI assistant connected to the Kotzilla MCP server with a setup
+      command; the server registers the project and configures the SDK via the
+      create_app / generate_app_config / guide_sdk_installation tools.
+    entry: https://mcp.kotzilla.io/mcp
+  - name: IDE plugin setup
+    description: >-
+      Open NowInAndroid in Android Studio, use the Koin IDE Plugin's "Kotzilla
+      Flight Check" tab, click "Manual Setup" to reach the Console, register
+      the app with the published values above, then apply the generated
+      kotzilla.json and Gradle changes.
+    entry: https://plugins.jetbrains.com/plugin/26131
+
+sample_projects:
+  - name: kotzilla-sdk-sample
+    url: https://github.com/kotzilla-io/kotzilla-sdk-sample
+    license: Apache-2.0
+  - name: KMP-App-Template
+    url: https://github.com/kotzilla-io/KMP-App-Template
+    license: Apache-2.0
+  - name: kmp-app-monitoring
+    url: https://github.com/kotzilla-io/kmp-app-monitoring
+    license: Apache-2.0
+    description: KMP application monitoring using Koin Annotations and Kotzilla.
+  - name: kotlinconf-app
+    url: https://github.com/kotzilla-io/kotlinconf-app
+    license: Apache-2.0
+    description: Kotzilla-instrumented fork of the official KotlinConf app.
+  - name: workshop-aiheroes-2026
+    url: https://github.com/kotzilla-io/workshop-aiheroes-2026
+    license: Apache-2.0
+    description: >-
+      Workshop debugging ViewModel performance traps (ANRs, scope leaks, memory
+      and resolution overhead) in a Koin-powered app with AI agent support via
+      MCP.
+  - name: workshop-droidcon-2025
+    url: https://github.com/kotzilla-io/workshop-droidcon-2025
+    license: Apache-2.0
+
+test_values:
+  cards: []
+  bank_accounts: []
+  identifiers: []
+  test_clocks: false
+  note: >-
+    Not applicable. Kotzilla is an observability vendor, not a payments or
+    messaging provider; there are no magic test values to publish. Recorded as
+    an explicit empty set rather than omitted.
+
+summary:
+  sandbox_published: true
+  sandbox_kind: sample-app-plus-free-account
+  test_credentials_published: false
+  free_account_required: true

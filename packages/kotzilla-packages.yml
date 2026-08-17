@@ -1,0 +1,218 @@
+generated: '2026-08-17'
+method: searched
+source: https://repo1.maven.org/maven2/io/kotzilla/ + https://repo1.maven.org/maven2/io/insert-koin/ + https://plugins.jetbrains.com/plugin/26131
+note: >-
+  Versions and dates were read from the authoritative Maven Central
+  maven-metadata.xml (<release> + the release directory listing) for each
+  artifact, NOT from search.maven.org's solr index — that index is stale for
+  this org and still reports io.kotzilla:kotzilla-sdk at 1.1.0 (2025-05-16)
+  when Maven Central itself serves 2.3.3 (2026-08-03). Two package families are
+  first-party: io.kotzilla (the commercial Kotzilla SDK + Gradle plugin) and
+  io.insert-koin (Koin, the open-source Kotlin DI framework Kotzilla created and
+  maintains — see https://kotzilla.io/about-us, "founded by the creators of
+  Koin"). Kotzilla publishes no npm or PyPI packages; a registry search of npm
+  for "kotzilla" returned zero results. The MCP server is a REMOTE endpoint, not
+  a package — the `npx -y mcp-remote` line in Kotzilla's docs installs the
+  third-party mcp-remote bridge, not a Kotzilla package, so it is deliberately
+  NOT listed here as a Kotzilla SDK.
+packages:
+  # --- Kotzilla SDK (commercial observability SDK) ---
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla:kotzilla-sdk
+    url: https://central.sonatype.com/artifact/io.kotzilla/kotzilla-sdk
+    install: implementation("io.kotzilla:kotzilla-sdk:2.3.3")
+    official: true
+    version: 2.3.3
+    published: '2026-08-03'
+    note: Kotlin Multiplatform umbrella artifact for the Kotzilla performance-monitoring SDK.
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla:kotzilla-sdk-android
+    url: https://central.sonatype.com/artifact/io.kotzilla/kotzilla-sdk-android
+    install: implementation("io.kotzilla:kotzilla-sdk-android:2.3.3")
+    official: true
+    version: 2.3.3
+    published: '2026-08-03'
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla:kotzilla-sdk-jvm
+    url: https://central.sonatype.com/artifact/io.kotzilla/kotzilla-sdk-jvm
+    install: implementation("io.kotzilla:kotzilla-sdk-jvm:2.3.3")
+    official: true
+    version: 2.3.3
+    published: '2026-08-03'
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla:kotzilla-core
+    url: https://central.sonatype.com/artifact/io.kotzilla/kotzilla-core
+    install: implementation("io.kotzilla:kotzilla-core:2.3.3")
+    official: true
+    version: 2.3.3
+    published: '2026-08-03'
+    note: Carries KotzillaCoreSDK.mark() startup-track markers.
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla:kotzilla-common
+    url: https://central.sonatype.com/artifact/io.kotzilla/kotzilla-common
+    official: true
+    version: 2.3.3
+    published: '2026-08-03'
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla:kotzilla-sdk-ktor3
+    url: https://central.sonatype.com/artifact/io.kotzilla/kotzilla-sdk-ktor3
+    install: implementation("io.kotzilla:kotzilla-sdk-ktor3:1.3.1")
+    official: true
+    version: 1.3.1
+    published: '2025-11-10'
+    note: >-
+      DECAY SIGNAL — the Ktor 3 server integration is pinned at 1.3.1
+      (2025-11-10) while the core SDK line has moved to 2.3.3 (2026-08-03).
+      Nine months and a major version behind the SDK it integrates with.
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla.kotzilla-plugin:io.kotzilla.kotzilla-plugin.gradle.plugin
+    url: https://plugins.gradle.org/plugin/io.kotzilla.kotzilla-plugin
+    install: id("io.kotzilla.kotzilla-plugin") version "2.3.3"
+    official: true
+    version: 2.3.3
+    published: '2026-08-03'
+    note: Gradle plugin marker; instruments the build and uploads mapping files.
+  - language: kotlin
+    registry: maven
+    name: io.kotzilla.kotzilla-plugin:kotzilla-plugin
+    url: https://central.sonatype.com/artifact/io.kotzilla.kotzilla-plugin/kotzilla-plugin
+    official: true
+    version: 1.1.0
+    published: '2025-05-16'
+    note: >-
+      Legacy plugin implementation coordinate. Superseded by the
+      `io.kotzilla.kotzilla-plugin.gradle.plugin` marker, which tracks 2.3.3;
+      this coordinate has not been republished since 2025-05-16.
+
+  # --- Koin (first-party open source: Kotzilla are the creators/maintainers) ---
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-bom
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-bom
+    install: implementation(platform("io.insert-koin:koin-bom:4.2.2"))
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+    note: Bill of materials pinning the whole Koin family.
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-core
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-core
+    install: implementation("io.insert-koin:koin-core:4.2.2")
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+    note: Koin, the Kotlin dependency-injection framework. Apache-2.0.
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-android
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-android
+    install: implementation("io.insert-koin:koin-android:4.2.2")
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-compose
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-compose
+    install: implementation("io.insert-koin:koin-compose:4.2.2")
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-compose-viewmodel
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-compose-viewmodel
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-ktor
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-ktor
+    install: implementation("io.insert-koin:koin-ktor:4.2.2")
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-test
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-test
+    install: testImplementation("io.insert-koin:koin-test:4.2.2")
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-annotations
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-annotations
+    install: implementation("io.insert-koin:koin-annotations:4.2.2")
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+    note: >-
+      The annotations line was renumbered onto the main Koin 4.2.x train; its
+      own 2.x series (last 2.1.0) is superseded.
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-ksp-compiler
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-ksp-compiler
+    install: ksp("io.insert-koin:koin-ksp-compiler:2.3.2-Beta1")
+    official: true
+    version: 2.3.2-Beta1
+    published: '2025-11-26'
+    note: >-
+      Latest published release on Maven Central is a Beta (2.3.2-Beta1,
+      2025-11-26); no stable release has followed it.
+  - language: kotlin
+    registry: maven
+    name: io.insert-koin:koin-androidx-workmanager
+    url: https://central.sonatype.com/artifact/io.insert-koin/koin-androidx-workmanager
+    official: true
+    version: 4.2.2
+    published: '2026-06-15'
+
+  # --- IDE distribution (no package registry; JetBrains Marketplace) ---
+  - language: kotlin
+    registry: jetbrains-marketplace
+    name: io.kotzilla.koin
+    url: https://plugins.jetbrains.com/plugin/26131
+    install: Install "Koin Dependency Injection (Official)" from the IntelliJ/Android Studio plugin marketplace
+    official: true
+    version: 1.6.0
+    published: '2026-08-03'
+    note: >-
+      Koin IDE plugin, published by vendor "Kotzilla" (JetBrains vendor id
+      13029, Toulouse FR, plugin-team@kotzilla.io). Visualizes the Koin
+      dependency graph and backs the koin_diagnose / koin_search_graph /
+      koin_apply_fix MCP tools. Version read from the JetBrains Marketplace
+      updates API, which is the registry metadata endpoint for this channel.
+
+repositories:
+  - name: Maven Central
+    url: https://repo1.maven.org/maven2/
+    note: Primary distribution for both io.kotzilla and io.insert-koin.
+  - name: Kotzilla Platform repository
+    url: https://repository.kotzilla.io/repository/kotzilla-platform/
+    note: >-
+      Provider-operated Nexus mirror named in the SDK setup docs
+      (https://doc.kotzilla.io/docs/settings/repository). The docs state the SDK
+      is published to Maven Central and recommend it; this host is the fallback.
+
+registries_checked:
+  - {registry: maven-central, result: found, artifacts: 19}
+  - {registry: gradle-plugin-portal, result: found, artifacts: 1}
+  - {registry: jetbrains-marketplace, result: found, artifacts: 1}
+  - {registry: npm, result: none, note: 'registry.npmjs.org search for "kotzilla" returned 0 packages'}
+  - {registry: pypi, result: none, note: Kotlin/JVM vendor; no Python client published}
+  - {registry: nuget, result: none}
+  - {registry: rubygems, result: none}
+  - {registry: crates.io, result: none}
+  - {registry: pkg.go.dev, result: none}

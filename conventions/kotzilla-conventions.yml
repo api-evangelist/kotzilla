@@ -1,0 +1,121 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://doc.kotzilla.io/ + https://mcp.kotzilla.io/.well-known/oauth-authorization-server
+note: >-
+  Cross-cutting semantics for the only callable surface Kotzilla publishes: the
+  MCP server. Most of the conventions this artifact normally captures —
+  pagination, field expansion, sparse fieldsets, error envelopes, request-id
+  tracing, idempotency — are REST/HTTP-API concepts and simply do not exist
+  here, because Kotzilla publishes no HTTP API. Each is recorded as an explicit
+  absence rather than omitted, so a reader can tell "checked, none" from "not
+  checked". NO Idempotency pointer is emitted: Kotzilla documents no
+  idempotency key, no retry-safety contract, and three of its fifteen MCP tools
+  mutate state (create_app, set_app_versions_enabled, koin_apply_fix) with no
+  published dedupe mechanism.
+
+surfaces:
+  - name: MCP server
+    endpoint: https://mcp.kotzilla.io/mcp
+    protocol: JSON-RPC 2.0 over HTTP (Model Context Protocol)
+    gated: true
+  - name: Kotzilla SDK
+    kind: in-process Kotlin library
+    protocol: Kotlin API (KotzillaSDK.*), not HTTP
+  - name: Telemetry ingestion
+    kind: SDK -> platform, one-way
+    documented: false
+    note: Hostname and protocol not published.
+
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    Bearer token in the Authorization header (bearer_methods_supported:
+    ["header"]), obtained via authorization-code + PKCE S256, public client,
+    dynamic registration. See authentication/kotzilla-authentication.yml.
+  sdk_style: api-key-in-config-file
+  sdk_detail: Per-application API key delivered in kotzilla.json.
+
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  evidence: >-
+    No idempotency key, retry key, or replay-safety contract appears anywhere
+    in Kotzilla's documentation, and the MCP protocol does not define one.
+    create_app and koin_apply_fix have no published dedupe semantics, so a
+    retried agent call may register a duplicate app or re-apply a source edit.
+  checked: '2026-08-17'
+
+pagination:
+  supported: not_documented
+  style: null
+  evidence: >-
+    The MCP specification defines an optional opaque `cursor` / `nextCursor`
+    pagination convention for list results, but Kotzilla's live tool schemas
+    are OAuth-gated and its docs do not state whether list_apps,
+    list_app_versions, get_issues or koin_search_graph paginate. Not asserted
+    either way.
+
+field_expansion:
+  supported: false
+  note: Not applicable; no REST resource representations.
+
+metadata:
+  supported: true
+  detail: >-
+    Custom session metadata is set client-side through the SDK, not through a
+    request field: KotzillaSDK.setProperties(vararg properties: Pair<String,
+    Any>) and KotzillaSDK.setUserId(userId: String).
+  source: https://doc.kotzilla.io/docs/settings/apiUse
+
+request_tracing:
+  request_id_header: null
+  supported: false
+  note: >-
+    No request-id or correlation header documented. Application-side tracing is
+    provided instead through KotzillaSDK.trace(name) {},
+    KotzillaSDK.suspendTrace(name) {}, KotzillaCoreSDK.mark(label, track) and
+    KotzillaStartup.mark(...).
+
+versioning:
+  api: null
+  api_note: No HTTP API version scheme; the MCP endpoint path is unversioned (/mcp).
+  sdk: semver
+  see: lifecycle/kotzilla-lifecycle.yml
+
+error_envelope:
+  format: oauth2-error
+  shape: '{"error": "...", "error_description": "..."}'
+  observed:
+    url: https://mcp.kotzilla.io/mcp
+    http_status: 401
+    body: '{"error":"invalid_token","error_description":"The access token is missing or invalid"}'
+  rfc9457: false
+  catalog_published: false
+  note: >-
+    Only the OAuth-layer error shape could be observed. Tool-level error
+    semantics are behind authentication and are not documented, so no error
+    catalog artifact is emitted.
+
+rate_limit_signalling:
+  supported: false
+  see: rate-limits/kotzilla-rate-limits.yml
+
+consent_and_privacy:
+  supported: true
+  detail: >-
+    Kotzilla exposes a first-class consent API on the SDK — setConsent(...),
+    getConsent(), forgetMe() — and 2.3.0 added "universal consent gates". This
+    is the one runtime convention Kotzilla documents unusually well, and it is
+    the GDPR control surface for end-user telemetry.
+  source: https://doc.kotzilla.io/docs/settings/privacyConsent
+
+cross_links:
+  authentication: authentication/kotzilla-authentication.yml
+  scopes: scopes/kotzilla-scopes.yml
+  lifecycle: lifecycle/kotzilla-lifecycle.yml
+  rate_limits: rate-limits/kotzilla-rate-limits.yml
+  mcp: mcp/kotzilla-mcp.yml
+  conformance: conformance/kotzilla-conformance.yml

@@ -1,24 +1,193 @@
 aid: kotzilla
 name: Kotzilla
-description: 'Kotzilla is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Kotzilla is a French developer-observability company based in Toulouse,
+  founded by the creators of Koin — the open-source dependency-injection
+  framework for Kotlin, which Kotzilla still maintains. The Kotzilla Platform
+  monitors Android and Kotlin Multiplatform applications by using Koin's
+  containerization to map runtime telemetry onto application architecture,
+  detecting slow startups, ANRs, crashes, background work and slow rendering,
+  then tracing each issue back to the dependency graph that caused it. The
+  platform has four components: the Koin IDE plugin for IntelliJ and Android
+  Studio, the Kotzilla SDK distributed through Maven Central, the Kotzilla
+  Console, and a hosted remote MCP server that connects AI coding assistants to
+  the platform. Kotzilla publishes no REST or GraphQL API — the MCP server, with
+  fifteen tools behind OAuth 2.0 with PKCE and dynamic client registration, is
+  its only machine-readable, agent-callable surface.
+image: https://storage.googleapis.com/strapi_cms_gcp/kotzilla_light_background_413a1a7089/kotzilla_light_background_413a1a7089.svg
 url: https://raw.githubusercontent.com/api-evangelist/kotzilla/refs/heads/main/apis.yml
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
 - Ai Data
-apis: []
+- Observability
+- Monitoring
+- Developer Tools
+- Kotlin
+- Android
+- Mobile
+- Dependency Injection
+- Performance
+- MCP
+- Agents
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Kotzilla MCP Server
+  description: >-
+    Hosted remote Model Context Protocol server that connects an AI coding
+    assistant to the Kotzilla Platform. Fifteen tools covering app registration,
+    SDK onboarding, telemetry, issue detection and context, fix guidance,
+    reporting, per-version ingestion control, and Koin dependency-graph
+    diagnosis and repair. Protected by OAuth 2.0 authorization-code with PKCE
+    S256, dynamic client registration and refresh tokens; an unauthenticated
+    tools/list returns HTTP 401 invalid_token. This is the only callable API
+    Kotzilla publishes.
+  humanURL: https://doc.kotzilla.io/docs/discover/mcpServer
+  baseURL: https://mcp.kotzilla.io/mcp
+  tags:
+  - MCP
+  - Agents
+  - Observability
+  - Monitoring
+  properties:
+  - type: MCPServer
+    url: mcp/kotzilla-mcp.yml
+  - type: Documentation
+    url: https://doc.kotzilla.io/docs/discover/mcpServer
+  - type: GettingStarted
+    url: https://doc.kotzilla.io/docs/getstartedCustom/mcpSetup
+  - type: Authentication
+    url: authentication/kotzilla-authentication.yml
+  - type: OAuthScopes
+    url: scopes/kotzilla-scopes.yml
 common:
 - type: Website
   url: https://kotzilla.io/
+- type: DeveloperPortal
+  url: https://console.kotzilla.io/
+- type: Documentation
+  url: https://doc.kotzilla.io/
+- type: APIReference
+  url: https://doc.kotzilla.io/docs/settings/apiUse
+- type: GettingStarted
+  url: https://doc.kotzilla.io/docs/getstartedCustom/overview
+- type: Support
+  url: https://join.slack.com/t/cloud-inject/shared_invite/zt-28grcrqc7-zHPUy9XCVZ1mNwE_afUZYw
+- type: HelpCenter
+  url: https://doc.kotzilla.io/docs/discover/help
+- type: Blog
+  url: https://blog.kotzilla.io/
+- type: BlogRSS
+  url: https://blog.kotzilla.io/rss.xml
+- type: GitHubOrganization
+  url: https://github.com/kotzilla-io
+- type: SourceCode
+  url: https://github.com/InsertKoinIO
+- type: Pricing
+  url: https://kotzilla.io/pricing
+- type: SignUp
+  url: https://console.kotzilla.io/signup
+- type: TermsOfService
+  url: https://kotzilla.io/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://kotzilla.io/privacy-policy
+- type: License
+  url: https://doc.kotzilla.io/docs/discover/license
+- type: ChangeLog
+  url: https://doc.kotzilla.io/docs/releaseNotes/changelogSDK
+- type: ChangeLog
+  name: Kotzilla changelog (captured)
+  url: changelog/kotzilla-changelog.yml
+- type: Deprecation
+  url: https://doc.kotzilla.io/docs/releaseNotes/versionUpgrades
+- type: Lifecycle
+  url: lifecycle/kotzilla-lifecycle.yml
+- type: Sandbox
+  url: https://console.kotzilla.io/sandbox-home
+- type: Sandbox
+  name: Kotzilla sandbox and demo app (captured)
+  url: sandbox/kotzilla-sandbox.yml
+- type: Packages
+  url: packages/kotzilla-packages.yml
+- type: SDKs
+  url: packages/kotzilla-packages.yml
+- type: Authentication
+  url: authentication/kotzilla-authentication.yml
+- type: OAuthScopes
+  url: scopes/kotzilla-scopes.yml
+- type: Conformance
+  url: conformance/kotzilla-conformance.yml
+- type: Conventions
+  url: conventions/kotzilla-conventions.yml
+- type: DomainSecurity
+  url: security/kotzilla-domain-security.yml
+- type: WellKnown
+  url: well-known/kotzilla-well-known.yml
+- type: Plans
+  url: plans/kotzilla-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/kotzilla-rate-limits.yml
+- type: LLMsTxt
+  url: llms/kotzilla-llms.txt
+- type: MCPServer
+  url: mcp/kotzilla-mcp.yml
+x-artifact-notes:
+  no_openapi: >-
+    No OpenAPI, Swagger or GraphQL contract is published. /openapi.json,
+    /openapi.yaml, /swagger.json, /v1/openapi.json, /v3/api-docs, /api-docs and
+    /redoc were probed on kotzilla.io, doc.kotzilla.io, console.kotzilla.io and
+    mcp.kotzilla.io on 2026-08-17; doc and console return HTML app shells
+    (soft 200s) for every path, the rest 404, and api.kotzilla.io does not
+    resolve. POST /graphql on console.kotzilla.io returns nginx 405. The
+    documentation section titled "SDK features & API" documents a Kotlin
+    in-process API, not an HTTP API.
+  no_agent_card: >-
+    No A2A agent card. /.well-known/agent-card.json and /.well-known/agent.json
+    return 404 on mcp.kotzilla.io and kotzilla.io; doc and console return HTML
+    shells, which are not cards. Nothing was written to a2a/ — this artifact is
+    search-only and is never authored on a provider's behalf.
+  no_status_page: >-
+    No status page. status.kotzilla.io does not resolve. kotzilla.statuspage.io
+    returns HTTP 200 but redirects to atlassian.com/software/statuspage, the
+    Atlassian marketing site — a false positive that was checked and rejected,
+    so no StatusPage pointer is emitted.
+  no_security_program: >-
+    No security.txt on any host, no vulnerability-disclosure or bug-bounty
+    program, and no trust center (trust.kotzilla.io does not resolve). No SOC 2
+    or ISO 27001 claim appears on any public Kotzilla surface, so no Security,
+    SecurityTxt, VulnerabilityDisclosure, TrustCenter or Compliance pointer is
+    emitted. Kotzilla does publish a GDPR posture with a real retention
+    schedule in its privacy policy; that is recorded in
+    conformance/kotzilla-conformance.yml rather than claimed as a certification.
+  no_idempotency: >-
+    No idempotency key or retry-safety contract is documented, and MCP defines
+    none. Three of the fifteen MCP tools mutate state (create_app,
+    set_app_versions_enabled, koin_apply_fix, the last of which writes to the
+    developer's source) with no published dedupe mechanism, so no Idempotency
+    pointer is emitted.
+  no_event_surface: >-
+    No AsyncAPI and no webhooks. Telemetry flows one way from the instrumented
+    application into the platform; there is no outbound customer event surface,
+    so the asyncapi scoring family is not applicable rather than failed.
+  no_skills_or_crosswalk: >-
+    skills/ and mcp/kotzilla-tool-crosswalk.yml were deliberately not written.
+    Both require an OpenAPI to ground operationIds against, and Kotzilla has
+    none. Authoring either would have meant inventing operations.
+  package_currency: >-
+    Maven versions were read from repo1.maven.org maven-metadata.xml, not from
+    search.maven.org's solr index, which is stale for this org and still
+    reports io.kotzilla:kotzilla-sdk at 1.1.0 (2025-05-16) against a real
+    current release of 2.3.3 (2026-08-03).
+x-enrichment:
+  date: '2026-08-17'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1
