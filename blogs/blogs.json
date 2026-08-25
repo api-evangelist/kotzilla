@@ -1,0 +1,21 @@
+{
+  "repo": "kotzilla",
+  "feeds": [
+    {
+      "source": "https://doc.kotzilla.io/docs/discover/help",
+      "feed_url": "https://doc.kotzilla.io/docs/discover/help",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://blog.kotzilla.io/",
+      "feed_url": "https://blog.kotzilla.io/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-22T20:20:02Z"
+}
