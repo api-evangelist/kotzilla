@@ -14,6 +14,17 @@ description: >-
   the platform. Kotzilla publishes no REST or GraphQL API — the MCP server, with
   fifteen tools behind OAuth 2.0 with PKCE and dynamic client registration, is
   its only machine-readable, agent-callable surface.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://storage.googleapis.com/strapi_cms_gcp/kotzilla_light_background_413a1a7089/kotzilla_light_background_413a1a7089.svg
 url: https://raw.githubusercontent.com/api-evangelist/kotzilla/refs/heads/main/apis.yml
 x-type: company
