@@ -1,0 +1,31 @@
+# Front Door AI Index — kotzilla — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: kotzilla
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: kotzilla.io
+  final_host: kotzilla.io
+  ownership: own
+  owner: kotzilla
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 42
+  host_score: 42
+  density: 27.01
+  words: 1555
+  tiers:
+    agentic: 17
+    core: 22
+    model: 3
+  ambiguous: 1
+  top_terms:
+    AI: 21
+    MCP: 12
+    AI assistant: 3
+    Claude: 3
+    copilot: 2
+    LLMs: 1
+    smart: 1
