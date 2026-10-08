@@ -98,3 +98,22 @@ summary:
     real cost of production use is not publicly discoverable. Notably the free
     tier's data region is fixed to the USA — EU data residency is an Enterprise
     (i.e. sales-gated) feature for a French vendor.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: Starter
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
