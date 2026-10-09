@@ -123,3 +123,20 @@ summary:
   note: Three of the fifteen tools mutate state (register an app, toggle per-version data ingestion, apply
     a Koin configuration fix to source). koin_apply_fix in particular writes to the developer's codebase,
     which is the highest- consequence operation in this tool set.
+rfc9728:
+  endpoint: https://mcp.kotzilla.io/mcp
+  metadata_url: https://mcp.kotzilla.io/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.kotzilla.io
+    authorization_servers:
+    - https://mcp.kotzilla.io
+    scopes_supported:
+    - openid
+    - email
+    bearer_methods_supported:
+    - header
+    resource_name: Kotzilla MCP Server
