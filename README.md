@@ -64,6 +64,121 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kotzilla is a company surfaced as a portfolio company of serena and added to the API Evangelist network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.
+Kotzilla is a French developer-observability company based in Toulouse, founded by the creators of Koin — the open-source dependency-injection framework for Kotlin, which Kotzilla still maintains. The Kotzilla Platform monitors Android and Kotlin Multiplatform applications by using Koin's containerization to map runtime telemetry onto application architecture, detecting slow startups, ANRs, crashes, background work and slow rendering, then tracing each issue back to the dependency graph that caused it. The platform has four components: the Koin IDE plugin for IntelliJ and Android Studio, the Kotzilla SDK distributed through Maven Central, the Kotzilla Console, and a hosted remote MCP server that connects AI coding assistants to the platform. Kotzilla publishes no REST or GraphQL API — the MCP server, with fifteen tools behind OAuth 2.0 with PKCE and dynamic client registration, is its only machine-readable, agent-callable surface.
 
-Source: portfolio company of [serena](https://github.com/api-evangelist/serena) — https://kotzilla.io/
+**Areas:** Company · Ai Data · Observability · Monitoring · Developer Tools · Kotlin · Android · Mobile · Dependency Injection · Performance · MCP · Agents
+
+## Kotzilla on APIs.io
+
+Everything profiled for Kotzilla is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kotzilla/](https://apis.io/providers/kotzilla/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Kotzilla MCP Server](https://apis.io/apis/kotzilla/kotzilla-mcp-server/) — Hosted remote Model Context Protocol server that connects an AI coding assistant to the Kotzilla Platform. Fifteen tools covering app registration, SDK…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [kotzilla](https://apis.io/servers/kotzilla/kotzilla/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Kotzilla Authentication](https://apis.io/security/kotzilla/kotzilla-authentication/)
+- [Kotzilla Domain Security](https://apis.io/security/kotzilla/kotzilla-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Kotzilla Scopes](https://apis.io/scopes/kotzilla/kotzilla-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Kotzilla Plans Pricing](https://apis.io/plans/kotzilla/kotzilla-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Kotzilla Rate Limits](https://apis.io/rate-limits/kotzilla/kotzilla-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://kotzilla.io/)
+- [Documentation](https://doc.kotzilla.io/)
+- [Getting started](https://doc.kotzilla.io/docs/getstartedCustom/overview)
+- [API reference](https://doc.kotzilla.io/docs/settings/apiUse)
+- [Pricing](https://kotzilla.io/pricing)
+- [Sign up](https://console.kotzilla.io/signup)
+- [Support](https://join.slack.com/t/cloud-inject/shared_invite/zt-28grcrqc7-zHPUy9XCVZ1mNwE_afUZYw)
+- [Changelog](https://doc.kotzilla.io/docs/releaseNotes/changelogSDK)
+- [Blog](https://blog.kotzilla.io/)
+- [Terms of service](https://kotzilla.io/terms-and-conditions)
+- [Privacy policy](https://kotzilla.io/privacy-policy)
+- [GitHub](https://github.com/kotzilla-io)
+
+## API Evangelist rating
+
+**Kin Score 35.8** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 54.8 |
+| Access clarity | 52.6 |
+
+**Agent readiness 29.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kotzilla/](https://apis.io/providers/kotzilla/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kotzilla: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kotzilla/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
